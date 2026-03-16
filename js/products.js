@@ -1,6 +1,6 @@
 //función para consulta todos los productos 
 async function getAllProducts() {
-  getAllData(urlProducts);
+  getAllData(urlProducts, fieldsProducts);
 }
 
 //función para crear los productos 
@@ -13,7 +13,7 @@ async function createProduct(event) {
     price: price
   }
 
-  createData(urlProducts, newProduct, event)
+  createData(urlProducts, newProduct, event, fieldsProducts)
 
   document.getElementById("titleCreate").value = null;
   document.getElementById("priceCreate").value = null;
@@ -29,15 +29,25 @@ async function updateProduct(event) {
     price: price
   }
 
-  updateData(urlProducts, newProduct, event)
+  updateData(id, urlProducts, newProduct, event, fieldsProducts)
 }
 
 //función para eliminar los productos 
 async function deleteProduct(id, event) {
-  deleteData(id, urlProducts, event)
+  deleteData(id, urlProducts, event, fieldsProducts)
 }
 
 //función para consulta todos los productos 
 async function getFindByIdProduct() {
-  getFindByIdData(urlProducts);
+  getFindByIdData(urlProducts, fieldsProducts);
+}
+
+async function loadUpdateProduct(id, event, url) {
+  event.preventDefault()
+
+  let product = await request(get, id, null, url);
+
+  document.getElementById("idUpdate").value = product.id;
+  document.getElementById("titleUpdate").value = product.title;
+  document.getElementById("priceUpdate").value = product.price;
 }

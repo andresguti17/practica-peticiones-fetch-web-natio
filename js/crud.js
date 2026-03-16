@@ -1,46 +1,46 @@
-async function getAllData(url) {
-  let array = await request(get, null, null, url);
+async function getAllData(url, fields) {
+    let array = await request(get, null, null, url);
 
-  var container = document.getElementById("container");
-  container.innerHTML = "";
+    var container = document.getElementById("container");
+    container.innerHTML = "";
 
-  array.forEach(data => {
-    tableLoad(data);
-  });
+    array.forEach(data => {
+        tableLoad(data, fields, url);
+    });
 }
 
-async function createData(url, newData, event) {
-  event.preventDefault()
+async function createData(url, newData, event, fields) {
+    event.preventDefault()
 
-  await request(post, null, newData, url);
+    await request(post, null, newData, url);
 
-  document.getElementById("modalAgregar").style.display = "none"
+    document.getElementById("modalAgregar").style.display = "none"
 
-  reloadPage(url)
+    reloadPage(url, fields)
 }
 
-async function updateData(url, newData, event) {
-  event.preventDefault()
+async function updateData(id, url, newData, event, fields) {
+    event.preventDefault()
 
-  await request(put, id, newData, url);
+    await request(put, id, newData, url);
 
-  reloadPage(url)
+    reloadPage(url, fields)
 }
 
-async function deleteData(id, url, event) {
-  event.preventDefault()
+async function deleteData(id, url, event, fields) {
+    event.preventDefault()
 
-  await request(deletes, id, null, url);
+    await request(deletes, id, null, url);
 
-  reloadPage(url)
+    reloadPage(url, fields)
 }
 
-async function getFindByIdData(url) {
-  var id = document.getElementById("idFilter").value
+async function getFindByIdData(url, fields) {
+    var id = document.getElementById("idFilter").value
 
-  let data = await request(get, id, null, url);
+    let data = await request(get, id, null, url);
 
-  container.innerHTML = "";
+    container.innerHTML = "";
 
-  tableLoad(data);
+    tableLoad(data, fields, url);
 }
