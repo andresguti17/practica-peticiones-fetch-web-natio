@@ -4,6 +4,14 @@ async function getAllData(url, fields) {
     var container = document.getElementById("container");
     container.innerHTML = "";
 
+    let list = document.getElementById("lista")
+
+    fields.forEach(element => {
+        let th = document.createElement("th")
+        th.innerText = element
+        list.appendChild(th)
+    });
+
     array.forEach(data => {
         tableLoad(data, fields, url);
     });
