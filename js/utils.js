@@ -24,7 +24,7 @@ async function tableLoad(data, fields, url) {
     deleteButton.id = data.id
     deleteButton.type = "button"
     deleteButton.className = "btn btn-danger"
-    deleteButton.onclick = (event) => deleteProduct(data.id, event);
+    deleteButton.onclick = (event) => deleteData(data.id, event);
     deleteButton.textContent = "Delete"
 
     var updateButton = document.createElement("button");
@@ -33,9 +33,10 @@ async function tableLoad(data, fields, url) {
     updateButton.setAttribute("data-bs-toggle", "modal");
     updateButton.setAttribute("data-bs-target", "#modalActualizar");
     updateButton.className = "btn btn-primary"
-    updateButton.onclick = function () {
-        loadUpdateProduct(data.id, event, url)
-    }
+    updateButton.onclick = (event) => window["modalUpdate" + type](data.id, event);
+    // updateButton.onclick = function () {
+    //     loadUpdateProduct(data.id, event, url)
+    // }
     updateButton.textContent = "Update"
 
 

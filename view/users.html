@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Exercise</a>
+    <a class="navbar-brand" href="/">Exercise</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -45,7 +45,7 @@
         <input id="idFilter" type="text" class="form-control" onchange="getFindByIdUser()">
         <br>
         <button class="btn btn-success" onclick="getAllUsers()">Get</button>
-        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAgregar">Add</button>
+        <button onclick="modalAddUser()" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAgregar">Add</button>
         <br>
 
         <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
@@ -56,15 +56,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form onsubmit="createUser(event)">
-                        <div class="modal-body">
+                        <div class="modal-body" id="modalAdd-content">
 
-                            <label for="">First name</label>
-                            <br>
-                            <input id="titleCreate" type="text" required>
-                            <br><br>
-                            <label for="">Last name</label>
-                            <br>
-                            <input id="priceCreate" type="number" required>
+                            
 
                         </div>
                         <div class="modal-footer">
@@ -86,21 +80,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form onsubmit="updateUser(event)">
-                        <div class="modal-body">
+                        <div class="modal-body" id="modalUpdate-content">
 
                             <p id="idUpdate"></p>
-                            <label for="">First name</label>
-                            <br>
-                            <input id="titleUpdate" type="text" required>
-                            <br><br>
-                            <label for="">Last name</label>
-                            <br>
-                            <input id="priceUpdate" type="number" required>
+                            
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="updateUser(event)">Update</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
                         </div>
                     </form>
                 </div>
@@ -123,7 +111,7 @@
     <script src="/js/utils.js"></script>
     <script src="/js/api.js"></script>
     <script src="/js/crud.js"></script>
-    <script src="/js/users.js"></script>
+    <script src="/js/endpoints/users.js"></script>
 </body>
 
 </html>

@@ -51,3 +51,9 @@ async function loadUpdateProduct(id, event, url) {
   document.getElementById("titleUpdate").value = product.title;
   document.getElementById("priceUpdate").value = product.price;
 }
+
+
+
+function modalAddProduct() {
+  modalAdd(fieldsProducts)
+}

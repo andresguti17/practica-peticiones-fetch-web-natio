@@ -52,3 +52,55 @@ async function getFindByIdData(url, fields) {
 
     tableLoad(data, fields, url);
 }
+
+
+// ===========================
+//      MODALES
+// ===========================
+
+function modalAdd(fields) {
+    let content = document.getElementById("modalAdd-content")
+    content.innerHTML = ""
+
+    fields.forEach(element => {
+        let label = document.createElement("label")
+        label.innerText = element
+
+        let input = document.createElement("input")
+        input.type = "text"
+        input.required = true
+        input.id = element + "Create"
+
+        content.appendChild(label)
+        content.appendChild(document.createElement("br"))
+        content.appendChild(input)
+        content.appendChild(document.createElement("br"))
+        content.appendChild(document.createElement("br"))
+    });
+}
+
+async function modalUpdate(fields, url, id, event) {
+    event.preventDefault()
+
+    let content = document.getElementById("modalUpdate-content")
+    content.innerHTML = ""
+
+    let data = await request(get, id, null, url);
+
+    fields.forEach(element => {
+        let label = document.createElement("label")
+        label.innerText = element
+
+        let input = document.createElement("input")
+        input.type = "text"
+        input.required = true
+        input.id = element + "Update"
+        input.value = data[element]
+
+        content.appendChild(label)
+        content.appendChild(document.createElement("br"))
+        content.appendChild(input)
+        content.appendChild(document.createElement("br"))
+        content.appendChild(document.createElement("br"))
+    });
+}

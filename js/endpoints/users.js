@@ -51,3 +51,13 @@ async function loadUpdateUser(id, event, url) {
   document.getElementById("titleUpdate").value = User.title;
   document.getElementById("priceUpdate").value = User.price;
 }
+
+
+
+function modalAddUser() {
+  modalAdd(fieldsUsers)
+}
+
+function modalUpdateUser(id, event) {
+  modalUpdate(fieldsUsers, urlUsers, id, event)
+}
