@@ -17,12 +17,23 @@ async function getAllData(url, fields) {
     });
 }
 
-async function createData(url, newData, event, fields) {
+async function createData(url, event, fields) {
     event.preventDefault()
+
+    let newData = {}
+
+    fieldsUsers.forEach(field => {
+        let value = document.getElementById(field + "Create").value;
+        newData[field] = value
+    });
 
     await request(post, null, newData, url);
 
     document.getElementById("modalAgregar").style.display = "none"
+
+    fieldsUsers.forEach(field => {
+        document.getElementById(field + "Create").value = null
+    });
 
     reloadPage(url, fields)
 }
@@ -51,4 +62,29 @@ async function getFindByIdData(url, fields) {
     container.innerHTML = "";
 
     tableLoad(data, fields, url);
+}
+
+// ===========================
+//      MODALES
+// ===========================
+
+function modalAdd(fields) {
+    let content = document.getElementById("modalAdd-content")
+    content.innerHTML = ""
+
+    fields.forEach(element => {
+        let label = document.createElement("label")
+        label.innerText = element
+
+        let input = document.createElement("input")
+        input.type = "text"
+        input.required = true
+        input.id = element + "Create"
+
+        content.appendChild(label)
+        content.appendChild(document.createElement("br"))
+        content.appendChild(input)
+        content.appendChild(document.createElement("br"))
+        content.appendChild(document.createElement("br"))
+    });
 }

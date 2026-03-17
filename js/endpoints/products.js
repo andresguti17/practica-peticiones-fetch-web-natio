@@ -5,18 +5,9 @@ async function getAllProducts() {
 
 //función para crear los productos 
 async function createProduct(event) {
-  const title = document.getElementById("titleCreate").value;
-  const price = document.getElementById("priceCreate").value;
+  event.preventDefault()
 
-  const newProduct = {
-    title: title,
-    price: price
-  }
-
-  createData(urlProducts, newProduct, event, fieldsProducts)
-
-  document.getElementById("titleCreate").value = null;
-  document.getElementById("priceCreate").value = null;
+  createData(urlUsers, event, fieldsUsers)
 }
 
 async function updateProduct(event) {
@@ -50,4 +41,10 @@ async function loadUpdateProduct(id, event, url) {
   document.getElementById("idUpdate").value = product.id;
   document.getElementById("titleUpdate").value = product.title;
   document.getElementById("priceUpdate").value = product.price;
+}
+
+
+
+function modalAddProduct() {
+  modalAdd(fieldsProducts)
 }

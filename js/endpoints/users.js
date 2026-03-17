@@ -5,18 +5,9 @@ async function getAllUsers() {
 
 //función para crear los Useros 
 async function createUser(event) {
-  const title = document.getElementById("titleCreate").value;
-  const price = document.getElementById("priceCreate").value;
+  event.preventDefault()
 
-  const newUser = {
-    title: title,
-    price: price
-  }
-
-  createData(urlUsers, newUser, event, fieldsUsers)
-
-  document.getElementById("titleCreate").value = null;
-  document.getElementById("priceCreate").value = null;
+  createData(urlUsers, event, fieldsUsers)
 }
 
 async function updateUser(event) {
@@ -50,4 +41,10 @@ async function loadUpdateUser(id, event, url) {
   document.getElementById("idUpdate").value = User.id;
   document.getElementById("titleUpdate").value = User.title;
   document.getElementById("priceUpdate").value = User.price;
+}
+
+
+
+function modalAddUser() {
+  modalAdd(fieldsUsers)
 }
