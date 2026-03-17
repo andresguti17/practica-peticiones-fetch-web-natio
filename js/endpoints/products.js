@@ -9,11 +9,11 @@ async function createProduct(event) {
 }
 
 async function updateProduct(event) {
-  updateData(urlProducts, event, fieldsProducts)
+  updateData(urlProducts, event, fieldsProducts, products)
 }
 
 async function deleteProduct(id, event) {
-  deleteData(id, urlProducts, event, fieldsProducts)
+  deleteData(id, urlProducts, event, fieldsProducts, products)
 }
 
 async function getFindByIdProduct() {

@@ -1,8 +1,8 @@
-async function reloadPage(url, fields) {
+async function reloadPage(url, fields, type) {
     var container = document.getElementById("container");
 
     container.innerHTML = "";
-    await getAllData(url, fields)
+    await getAllData(url, fields, type)
 }
 
 
@@ -24,7 +24,7 @@ async function tableLoad(data, fields, url, type) {
     deleteButton.id = data.id
     deleteButton.type = "button"
     deleteButton.className = "btn btn-danger"
-    deleteButton.onclick = (event) => window["loadUpdate" + type](data.id, event, url);
+    deleteButton.onclick = (event) => window["delete" + type](data.id, event,);
     deleteButton.textContent = "Delete"
 
     var updateButton = document.createElement("button");

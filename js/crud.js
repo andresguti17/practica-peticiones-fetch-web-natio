@@ -39,7 +39,7 @@ async function createData(url, event, fields) {
     reloadPage(url, fields)
 }
 
-async function updateData(url, event, fields) {
+async function updateData(url, event, fields, type) {
     event.preventDefault()
 
     let newData = {}
@@ -53,15 +53,15 @@ async function updateData(url, event, fields) {
 
     document.getElementById("modalActualizar").style.display = "none"
 
-    reloadPage(url, fields)
+    reloadPage(url, fields, type)
 }
 
-async function deleteData(id, url, event, fields) {
+async function deleteData(id, url, event, fields, type) {
     event.preventDefault()
 
     await request(deletes, id, null, url);
 
-    reloadPage(url, fields)
+    reloadPage(url, fields, type)
 }
 
 async function getFindByIdData(url, fields, type) {

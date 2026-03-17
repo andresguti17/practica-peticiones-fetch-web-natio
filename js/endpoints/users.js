@@ -9,11 +9,11 @@ async function createUser(event) {
 }
 
 async function updateUser(event) {
-  updateData(urlUsers, event, fieldsUsers)
+  updateData(urlUsers, event, fieldsUsers, users)
 }
 
 async function deleteUser(id, event) {
-  deleteData(id, urlUsers, event, fieldsUsers)
+  deleteData(id, urlUsers, event, fieldsUsers, users)
 }
 
 async function getFindByIdUser() {

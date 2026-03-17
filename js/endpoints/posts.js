@@ -9,11 +9,11 @@ async function createPost(event) {
 }
 
 async function updatePost(event) {
-  updateData(urlPosts, event, fieldsPosts)
+  updateData(urlPosts, event, fieldsPosts, posts)
 }
 
 async function deletePost(id, event) {
-  deleteData(id, urlPosts, event, fieldsPosts)
+  deleteData(id, urlPosts, event, fieldsPosts, posts)
 }
 
 async function getFindByIdPost() {
