@@ -5,6 +5,7 @@ async function getAllData(url, fields) {
     container.innerHTML = "";
 
     let list = document.getElementById("lista")
+    list.innerHTML = ""
 
     fields.forEach(element => {
         let th = document.createElement("th")
@@ -38,10 +39,19 @@ async function createData(url, event, fields) {
     reloadPage(url, fields)
 }
 
-async function updateData(id, url, newData, event, fields) {
+async function updateData(url, event, fields) {
     event.preventDefault()
 
-    await request(put, id, newData, url);
+    let newData = {}
+
+    fieldsProducts.forEach(field => {
+        let value = document.getElementById(field + "Update").value;
+        newData[field] = value
+    });
+
+    await request(put, newData.id, newData, url);
+
+    document.getElementById("modalActualizar").style.display = "none"
 
     reloadPage(url, fields)
 }

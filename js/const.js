@@ -11,5 +11,5 @@ const put="PUT";
 const deletes="DELETE";
 
 const fieldsProducts = ["id", "title", "price"]
-const fieldsCarts = ["id", "title", "description", "price"]
+const fieldsCarts = ["id", "title", "price"]
 const fieldsUsers = ["id", "firstName", "lastName", "age", "phone", "email"]
