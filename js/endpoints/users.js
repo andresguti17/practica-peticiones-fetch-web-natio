@@ -1,5 +1,5 @@
 async function getAllUsers() {
-  getAllData(urlUsers, fieldsUsers);
+  getAllData(urlUsers, fieldsUsers, users);
 }
 
 async function createUser(event) {
@@ -17,20 +17,14 @@ async function deleteUser(id, event) {
 }
 
 async function getFindByIdUser() {
-  getFindByIdData(urlUsers, fieldsUsers);
+  getFindByIdData(urlUsers, fieldsUsers, users);
 }
 
 async function loadUpdateUser(id, event, url) {
   event.preventDefault()
 
-  let user = await request(get, id, null, url);
-
-  fieldsUsers.forEach(field => {
-    document.getElementById(field + "Update").value = user[field]
-  });
+  loadUpdateData(id, url, fieldsUsers)
 }
-
-
 
 function modalAddUser() {
   modalAdd(fieldsUsers)

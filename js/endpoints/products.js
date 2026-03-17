@@ -1,5 +1,5 @@
 async function getAllProducts() {
-  getAllData(urlProducts, fieldsProducts);
+  getAllData(urlProducts, fieldsProducts, products);
 }
 
 async function createProduct(event) {
@@ -17,20 +17,14 @@ async function deleteProduct(id, event) {
 }
 
 async function getFindByIdProduct() {
-  getFindByIdData(urlProducts, fieldsProducts);
+  getFindByIdData(urlProducts, fieldsProducts, products);
 }
 
 async function loadUpdateProduct(id, event, url) {
   event.preventDefault()
 
-  let product = await request(get, id, null, url);
-
-  fieldsProducts.forEach(field => {
-    document.getElementById(field + "Update").value = product[field]
-  });
+  loadUpdateData(id, url, fieldsProducts)
 }
-
-
 
 function modalAddProduct() {
   modalAdd(fieldsProducts)

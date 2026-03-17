@@ -1,4 +1,4 @@
-async function getAllData(url, fields) {
+async function getAllData(url, fields, type) {
     let array = await request(get, null, null, url);
 
     var container = document.getElementById("container");
@@ -14,7 +14,7 @@ async function getAllData(url, fields) {
     });
 
     array.forEach(data => {
-        tableLoad(data, fields, url);
+        tableLoad(data, fields, url, type);
     });
 }
 
@@ -23,7 +23,7 @@ async function createData(url, event, fields) {
 
     let newData = {}
 
-    fieldsUsers.forEach(field => {
+    fields.forEach(field => {
         let value = document.getElementById(field + "Create").value;
         newData[field] = value
     });
@@ -32,7 +32,7 @@ async function createData(url, event, fields) {
 
     document.getElementById("modalAgregar").style.display = "none"
 
-    fieldsUsers.forEach(field => {
+    fields.forEach(field => {
         document.getElementById(field + "Create").value = null
     });
 
@@ -44,7 +44,7 @@ async function updateData(url, event, fields) {
 
     let newData = {}
 
-    fieldsProducts.forEach(field => {
+    fields.forEach(field => {
         let value = document.getElementById(field + "Update").value;
         newData[field] = value
     });
@@ -64,14 +64,14 @@ async function deleteData(id, url, event, fields) {
     reloadPage(url, fields)
 }
 
-async function getFindByIdData(url, fields) {
+async function getFindByIdData(url, fields, type) {
     var id = document.getElementById("idFilter").value
 
     let data = await request(get, id, null, url);
 
     container.innerHTML = "";
 
-    tableLoad(data, fields, url);
+    tableLoad(data, fields, url, type);
 }
 
 // ===========================
@@ -96,5 +96,32 @@ function modalAdd(fields) {
         content.appendChild(input)
         content.appendChild(document.createElement("br"))
         content.appendChild(document.createElement("br"))
+    });
+}
+
+async function loadUpdateData(id, url, field) {
+    let content = document.getElementById("modalUpdate-content")
+    content.innerHTML = ""
+
+    field.forEach(field => {
+        let label = document.createElement("label")
+        label.innerText = field
+
+        let input = document.createElement("input")
+        input.type = "text"
+        input.required = true
+        input.id = field + "Update"
+
+        content.appendChild(label)
+        content.appendChild(document.createElement("br"))
+        content.appendChild(input)
+        content.appendChild(document.createElement("br"))
+        content.appendChild(document.createElement("br"))
+    });
+
+    let data = await request(get, id, null, url);
+
+    field.forEach(field => {
+        document.getElementById(field + "Update").value = data[field]
     });
 }

@@ -8,7 +8,7 @@ async function reloadPage(url, fields) {
 
 
 // Cargar tablas
-async function tableLoad(data, fields, url) {
+async function tableLoad(data, fields, url, type) {
     var container = document.getElementById("container");
     var register = document.createElement("tr");
 
@@ -24,7 +24,7 @@ async function tableLoad(data, fields, url) {
     deleteButton.id = data.id
     deleteButton.type = "button"
     deleteButton.className = "btn btn-danger"
-    deleteButton.onclick = (event) => deleteProduct(data.id, event);
+    deleteButton.onclick = (event) => window["loadUpdate" + type](data.id, event, url);
     deleteButton.textContent = "Delete"
 
     var updateButton = document.createElement("button");
@@ -34,7 +34,7 @@ async function tableLoad(data, fields, url) {
     updateButton.setAttribute("data-bs-target", "#modalActualizar");
     updateButton.className = "btn btn-primary"
     updateButton.onclick = function () {
-        loadUpdateProduct(data.id, event, url)
+        window["loadUpdate" + type](data.id, event, url);
     }
     updateButton.textContent = "Update"
 
