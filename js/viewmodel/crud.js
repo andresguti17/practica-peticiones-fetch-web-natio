@@ -1,4 +1,15 @@
-async function getAllData(url, fields, type) {
+import { get,
+    post,
+    put,
+    deletes} from "../model/const.js"
+
+import { request } from "./api.js"
+
+import { tableLoad,
+    reloadPage } from "./utils.js"
+
+
+export async function getAllData(url, fields, type) {
     let array = await request(get, null, null, url);
 
     var container = document.getElementById("container");
@@ -18,7 +29,7 @@ async function getAllData(url, fields, type) {
     });
 }
 
-async function createData(url, event, fields) {
+export async function createData(url, event, fields) {
     event.preventDefault()
 
     let newData = {}
@@ -39,7 +50,7 @@ async function createData(url, event, fields) {
     reloadPage(url, fields)
 }
 
-async function updateData(url, event, fields, type) {
+export async function updateData(url, event, fields, type) {
     event.preventDefault()
 
     let newData = {}
@@ -56,7 +67,7 @@ async function updateData(url, event, fields, type) {
     reloadPage(url, fields, type)
 }
 
-async function deleteData(id, url, event, fields, type) {
+export async function deleteData(id, url, event, fields, type) {
     event.preventDefault()
 
     await request(deletes, id, null, url);
@@ -64,7 +75,7 @@ async function deleteData(id, url, event, fields, type) {
     reloadPage(url, fields, type)
 }
 
-async function getFindByIdData(url, fields, type) {
+export async function getFindByIdData(url, fields, type) {
     var id = document.getElementById("idFilter").value
 
     let data = await request(get, id, null, url);
@@ -78,7 +89,7 @@ async function getFindByIdData(url, fields, type) {
 //      MODALES
 // ===========================
 
-function modalAdd(fields) {
+export function modalAdd(fields) {
     let content = document.getElementById("modalAdd-content")
     content.innerHTML = ""
 
@@ -99,7 +110,7 @@ function modalAdd(fields) {
     });
 }
 
-async function loadUpdateData(id, url, field) {
+export async function loadUpdateData(id, url, field) {
     let content = document.getElementById("modalUpdate-content")
     content.innerHTML = ""
 

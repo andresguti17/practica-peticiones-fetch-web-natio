@@ -1,4 +1,4 @@
-async function request(method, id = null, data = null, url) {
+export async function request(method, id = null, data = null, url) {
   //let url = "http://localhost:3000/products";
 
   if (id !== null) {

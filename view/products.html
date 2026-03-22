@@ -42,10 +42,10 @@
     <div class="container">
         <h1>List products</h1>
         <label for="">Id</label>
-        <input id="idFilter" type="text" class="form-control" onchange="getFindByIdProduct()">
+        <input id="idFilter" type="text" class="form-control">
         <br>
-        <button class="btn btn-success" onclick="getAllProducts()">Get</button>
-        <button onclick="modalAddProduct()" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAgregar">Add</button>
+        <button id="getAllProducts" class="btn btn-success">Get</button>
+        <button id="modalAddProduct" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAgregar">Add</button>
         <br>
 
         <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
@@ -55,7 +55,7 @@
                         <h1 class="modal-title fs-5" id="modalAgregarLabel">Add product</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form onsubmit="createProduct(event)">
+                    <form id="createProduct">
                         <div class="modal-body" id="modalAdd-content">
 
                             
@@ -79,7 +79,7 @@
                         <h1 class="modal-title fs-5" id="modalActualizarLabel">Update product</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form onsubmit="updateProduct(event)">
+                    <form id="updateProduct">
                         <div class="modal-body" id="modalUpdate-content">
 
                             
@@ -87,7 +87,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="updateProduct(event)">Update</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
                         </div>
                     </form>
                 </div>
@@ -106,11 +106,8 @@
             </tbody>
         </table>
     </div>
-    <script src="/js/const.js"></script>
-    <script src="/js/utils.js"></script>
-    <script src="/js/api.js"></script>
-    <script src="/js/crud.js"></script>
-    <script src="/js/endpoints/products.js"></script>
+
+    <script type="module" src="/js/viewmodel/productsViewModel.js"></script>
 </body>
 
 </html>

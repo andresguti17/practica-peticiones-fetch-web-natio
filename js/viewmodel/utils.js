@@ -1,4 +1,6 @@
-async function reloadPage(url, fields, type) {
+import { getAllData } from "./crud.js";
+
+export async function reloadPage(url, fields, type) {
     var container = document.getElementById("container");
 
     container.innerHTML = "";
@@ -8,7 +10,7 @@ async function reloadPage(url, fields, type) {
 
 
 // Cargar tablas
-async function tableLoad(data, fields, url, type) {
+export async function tableLoad(data, fields, url, type) {
     var container = document.getElementById("container");
     var register = document.createElement("tr");
 
@@ -21,26 +23,36 @@ async function tableLoad(data, fields, url, type) {
     var options = document.createElement("td");
 
     var deleteButton = document.createElement("button");
-    deleteButton.id = data.id
+    //deleteButton.id = data.id
     deleteButton.type = "button"
     deleteButton.className = "btn btn-danger"
-    deleteButton.onclick = (event) => window["delete" + type](data.id, event,);
+
+    deleteButton.dataset.action = "delete";
+    deleteButton.dataset.id = data.id;
+    deleteButton.dataset.type = type;
+    //deleteButton.onclick = (event) => window["delete" + type](data.id, event);
     deleteButton.textContent = "Delete"
 
     var updateButton = document.createElement("button");
-    updateButton.id = data.id
+    //updateButton.id = data.id
     updateButton.type = "button"
     updateButton.setAttribute("data-bs-toggle", "modal");
     updateButton.setAttribute("data-bs-target", "#modalActualizar");
     updateButton.className = "btn btn-primary"
-    updateButton.onclick = function () {
-        window["loadUpdate" + type](data.id, event, url);
-    }
+
+    updateButton.dataset.action = "update";
+    updateButton.dataset.id = data.id;
+    updateButton.dataset.type = type;
+    //updateButton.onclick = function () {
+    //    window["loadUpdate" + type](data.id, event, url);
+    //}
     updateButton.textContent = "Update"
 
 
     options.appendChild(deleteButton)
     options.appendChild(updateButton)
+
+    //options.style.gap = "30px"
 
     register.appendChild(options)
     container.appendChild(register);
