@@ -1,138 +1,58 @@
-import { get,
-    post,
-    put,
-    deletes} from "../model/const.js"
-
+import { get, post, put, deletes } from "../model/const.js"
 import { request } from "./api.js"
-
-import { tableLoad,
-    reloadPage } from "./utils.js"
-
+import { reloadPage } from "./utils.js"
+import { renderTable, renderHeaders, renderModalFields } from "../../view/render.js"
 
 export async function getAllData(url, fields, type) {
     let array = await request(get, null, null, url);
-
-    var container = document.getElementById("container");
-    container.innerHTML = "";
-
-    let list = document.getElementById("lista")
-    list.innerHTML = ""
-
-    fields.forEach(element => {
-        let th = document.createElement("th")
-        th.innerText = element
-        list.appendChild(th)
-    });
-
-    array.forEach(data => {
-        tableLoad(data, fields, url, type);
-    });
+    renderHeaders(fields);          // ← render delegado a la View
+    renderTable(array, fields, url, type);
 }
 
 export async function createData(url, event, fields) {
     event.preventDefault()
-
     let newData = {}
-
     fields.forEach(field => {
-        let value = document.getElementById(field + "Create").value;
-        newData[field] = value
+        newData[field] = document.getElementById(field + "Create").value;
     });
-
     await request(post, null, newData, url);
-
     document.getElementById("modalAgregar").style.display = "none"
-
-    fields.forEach(field => {
-        document.getElementById(field + "Create").value = null
-    });
-
+    fields.forEach(field => document.getElementById(field + "Create").value = null);
     reloadPage(url, fields)
 }
 
 export async function updateData(url, event, fields, type) {
     event.preventDefault()
-
     let newData = {}
-
     fields.forEach(field => {
-        let value = document.getElementById(field + "Update").value;
-        newData[field] = value
+        newData[field] = document.getElementById(field + "Update").value;
     });
-
     await request(put, newData.id, newData, url);
-
     document.getElementById("modalActualizar").style.display = "none"
-
     reloadPage(url, fields, type)
 }
 
 export async function deleteData(id, url, event, fields, type) {
     event.preventDefault()
-
     await request(deletes, id, null, url);
-
     reloadPage(url, fields, type)
 }
 
 export async function getFindByIdData(url, fields, type) {
-    var id = document.getElementById("idFilter").value
-
+    let id = document.getElementById("idFilter").value
     let data = await request(get, id, null, url);
-
-    container.innerHTML = "";
-
-    tableLoad(data, fields, url, type);
+    document.getElementById("container").innerHTML = "";
+    renderTable([data], fields, url, type);  // ← mismo render, un solo item
 }
-
-// ===========================
-//      MODALES
-// ===========================
 
 export function modalAdd(fields) {
-    let content = document.getElementById("modalAdd-content")
-    content.innerHTML = ""
-
-    fields.forEach(element => {
-        let label = document.createElement("label")
-        label.innerText = element
-
-        let input = document.createElement("input")
-        input.type = "text"
-        input.required = true
-        input.id = element + "Create"
-
-        content.appendChild(label)
-        content.appendChild(document.createElement("br"))
-        content.appendChild(input)
-        content.appendChild(document.createElement("br"))
-        content.appendChild(document.createElement("br"))
-    });
+    renderModalFields("modalAdd-content", fields, "Create"); // ← render delegado
 }
 
-export async function loadUpdateData(id, url, field) {
-    let content = document.getElementById("modalUpdate-content")
-    content.innerHTML = ""
-
-    field.forEach(field => {
-        let label = document.createElement("label")
-        label.innerText = field
-
-        let input = document.createElement("input")
-        input.type = "text"
-        input.required = true
-        input.id = field + "Update"
-
-        content.appendChild(label)
-        content.appendChild(document.createElement("br"))
-        content.appendChild(input)
-        content.appendChild(document.createElement("br"))
-        content.appendChild(document.createElement("br"))
-    });
-
+export async function loadUpdateData(id, url, fields) {
+    renderModalFields("modalUpdate-content", fields, "Update");
     let data = await request(get, id, null, url);
-
-    field.forEach(field => {
+    fields.forEach(field => {
         document.getElementById(field + "Update").value = data[field]
     });
 }
