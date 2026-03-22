@@ -1,4 +1,4 @@
-import { tableLoad } from "../js/viewmodel/utils.js"
+import { tableLoad } from "../utils/utils.js"
 
 export function renderHeaders(fields) {
     let list = document.getElementById("lista")

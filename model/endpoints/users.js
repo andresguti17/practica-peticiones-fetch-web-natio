@@ -8,7 +8,7 @@ import { getAllData,
   deleteData,
   getFindByIdData,
   loadUpdateData,
-  modalAdd } from "../../viewmodel/crud.js";
+  modalAdd } from "../../../viewmodel/crud.js";
 
 export async function getAllUsers() {
   getAllData(urlUsers, fieldsUsers, users);

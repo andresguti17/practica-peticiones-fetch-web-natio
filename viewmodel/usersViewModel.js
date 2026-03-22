@@ -1,4 +1,4 @@
-import { urlUsers } from "../model/const.js";
+import { urlUsers } from "../js/model/const.js";
     
 import { getAllUsers,
     createUser,
@@ -6,7 +6,7 @@ import { getAllUsers,
     deleteUser,
     getFindByIdUser,
     loadUpdateUser,
-    modalAddUser } from "../model/endpoints/users.js";
+    modalAddUser } from "../js/model/endpoints/users.js";
 
 var idFilter = document.getElementById("idFilter")
 idFilter.addEventListener("change", getFindByIdUser)

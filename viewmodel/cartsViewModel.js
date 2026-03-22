@@ -1,4 +1,4 @@
-import { urlCarts } from "../model/const.js";
+import { urlCarts } from "../js/model/const.js";
     
 import { getAllCarts,
     createCart,
@@ -6,7 +6,7 @@ import { getAllCarts,
     deleteCart,
     getFindByIdCart,
     loadUpdateCart,
-    modalAddCart } from "../model/endpoints/carts.js";
+    modalAddCart } from "../js/model/endpoints/carts.js";
 
 var idFilter = document.getElementById("idFilter")
 idFilter.addEventListener("change", getFindByIdCart)

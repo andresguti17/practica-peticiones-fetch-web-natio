@@ -1,4 +1,4 @@
-import { getAllData } from "./crud.js";
+import { getAllData } from "../viewmodel/crud.js";
 
 export async function reloadPage(url, fields, type) {
     var container = document.getElementById("container");
