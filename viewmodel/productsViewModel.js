@@ -1,4 +1,4 @@
-import { urlProducts } from "../js/model/const.js";
+import { urlProducts } from "../model/const.js";
     
 import { getAllProducts,
     createProduct,
@@ -6,7 +6,7 @@ import { getAllProducts,
     deleteProduct,
     getFindByIdProduct,
     loadUpdateProduct,
-    modalAddProduct } from "../js/model/endpoints/products.js";
+    modalAddProduct } from "../model/endpoints/products.js";
 
 var idFilter = document.getElementById("idFilter")
 idFilter.addEventListener("change", getFindByIdProduct)

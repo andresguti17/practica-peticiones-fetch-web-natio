@@ -1,7 +1,15 @@
-import { get, post, put, deletes } from "../js/model/const.js"
+import { get,
+    post,
+    put,
+    deletes } from "../model/const.js"
+
 import { request } from "../services/api.js"
+
 import { reloadPage } from "../utils/utils.js"
-import { renderTable, renderHeaders, renderModalFields } from "../view/render.js"
+
+import { renderTable,
+    renderHeaders,
+    renderModalFields } from "../view/render.js"
 
 export async function getAllData(url, fields, type) {
     let array = await request(get, null, null, url);

@@ -42,9 +42,9 @@
     <div class="container">
         <h1>List carts</h1>
         <label for="">Id</label>
-        <input id="idFilter" type="text" class="form-control" onchange="getFindByIdCart()">
+        <input id="idFilter" type="text" class="form-control">
         <br>
-        <button class="btn btn-success" onclick="getAllCarts()">Get</button>
+        <button class="btn btn-success" id="getAllCarts">Get</button>
         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAgregar">Add</button>
         <br>
 
@@ -55,7 +55,7 @@
                         <h1 class="modal-title fs-5" id="modalAgregarLabel">Add cart</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form onsubmit="createCart(event)">
+                    <form id="createCart">
                         <div class="modal-body">
 
                             <label for="">Title</label>
@@ -85,7 +85,7 @@
                         <h1 class="modal-title fs-5" id="modalActualizarLabel">Update cart</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form onsubmit="updateCart(event)">
+                    <form id="updateCart">
                         <div class="modal-body">
 
                             <p id="idUpdate"></p>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="updateProduct(event)">Update</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
                         </div>
                     </form>
                 </div>
@@ -119,11 +119,8 @@
             </tbody>
         </table>
     </div>
-    <script src="/js/const.js"></script>
-    <script src="/js/utils.js"></script>
-    <script src="/js/api.js"></script>
-    <script src="/js/crud.js"></script>
-    <script src="/js/endpoints/carts.js"></script>
+    
+    <script type="module" src="../viewmodel/cartsViewModel.js"></script>
 </body>
 
 </html>

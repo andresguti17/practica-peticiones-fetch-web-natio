@@ -1,4 +1,4 @@
-import { urlPosts } from "../js/model/const.js";
+import { urlPosts } from "../model/const.js";
     
 import { getAllPosts,
     createPost,
@@ -6,7 +6,7 @@ import { getAllPosts,
     deletePost,
     getFindByIdPost,
     loadUpdatePost,
-    modalAddPost } from "../js/model/endpoints/posts.js";
+    modalAddPost } from "../model/endpoints/posts.js";
 
 var idFilter = document.getElementById("idFilter")
 idFilter.addEventListener("change", getFindByIdPost)
