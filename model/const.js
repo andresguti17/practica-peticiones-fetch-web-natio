@@ -17,6 +17,6 @@ export const posts="Post"
 
 export const fieldsProducts = ["id", "title", "price"]
 export const fieldsCartProducts = ["id", "title", "price"]
-export const fieldsCarts = ["id", fieldsCartProducts]
+export const fieldsCarts = ["id", "userId", "totalProducts", "totalQuantity", "total"]
 export const fieldsUsers = ["id", "firstName", "lastName", "age", "phone", "email"]
 export const fieldsPosts = ["id", "title", "body", "views"]
